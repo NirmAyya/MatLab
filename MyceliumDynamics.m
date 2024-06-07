@@ -1,5 +1,16 @@
 function MyceliumDynamics()
 
+
+%{ 
+this code runs a forward-step method on a system of partial differential equations simulating the growth dynamics of mycelium
+this code was our numerical simulation for our proposed system
+it simulates the system, displays and saves a video of the progression of the system
+you can play around with initial conditions and growth parameters to simulate various systems
+unrealistic growth parameters or ill-defined initial conditions may cause the system to no longer be an accurate system
+to model the dynamics of mycelium growth
+%}
+
+
 %{ 
 v = tip extension rate
 a1 =time constant for tip birth or death
@@ -13,7 +24,7 @@ Pn= function of x and t for nutrient density
 Pm = function of x and t for mycelium density
 n= function of x and t for number of tips per point (this is an average, no
 need to discretize)
-E= mycelium absorbtion rate of nutrients
+E= mycelium absorption rate of nutrients
 F= tip absorption rate of nutrients
 %}
 
@@ -40,8 +51,8 @@ time_steps = round(t_max / dt); % Number of time steps
 
 % Initial conditions
 Pm = zeros(size(x)); % Initial mycelium density
-n = cos(x)+2; % Initial number of tips (gaussian distribution)
-Pn = zeros(size(x)); % Initial nutrient density (wider Gaussian distribution)
+n = cos(x)+2; % Initial number of tips ('sinusoidal' distribution)
+Pn = zeros(size(x)); % Initial nutrient density (smear on the growth plate)
 Pn(abs(x) <= 1) = .3; % Set P = 1 for -1 <= x <= 1
 
 % Initialize lists for storing results
